@@ -7,4 +7,9 @@ FROM --platform=${BUILDPLATFORM} debian:bullseye AS tier-1
 
 ARG DEBIAN_FRONTEND=noninteractive
 RUN echo 'deb http://deb.debian.org/debian bookworm-backports main' >> /etc/apt/sources.list
-RUN apt update && apt install -y gcc-13 python3.11 python2.7 clang-15 fpc pypy3 golang-1.21-go && rm -rf /var/lib/apt/lists/*
+RUN apt update && apt install -y gcc-13 python3.11 python2.7 clang-15 fpc pypy3 && rm -rf /var/lib/apt/lists/*
+
+FROM --platform=${BUILDPLATFORM} tier-1 AS tier-2
+
+ARG DEBIAN_FRONTEND=noninteractive
+RUN apt update && apt install -y golang-1.21-go mono-runtime openjdk-17-jdk openjdk-11-jdk openjdk-8-jdk ruby3.1 && rm -rf /var/lib/apt/lists/*
