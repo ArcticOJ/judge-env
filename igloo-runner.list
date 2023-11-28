@@ -1,0 +1,3 @@
+deb http://deb.debian.org/debian bookworm-backports main
+deb http://deb.debian.org/debian bullseye main
+deb [signed-by=/etc/apt/keyrings/adoptium.asc] https://packages.adoptium.net/artifactory/deb bookworm main
